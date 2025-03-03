@@ -163,6 +163,7 @@
 
 
 /* ✅ Login Page */
+/* ✅ ปรับปรุงหน้า Login */
 .login-container {
     display: flex;
     justify-content: center;
@@ -181,13 +182,6 @@
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.profile-icon img {
-    width: 70px;
-    border-radius: 50%;
-    background: white;
-    padding: 10px;
-}
-
 h2 {
     color: white;
     margin: 10px 0;
@@ -200,10 +194,6 @@ h2 {
     padding: 10px;
     border-radius: 10px;
     margin: 10px 0;
-}
-
-.input-group .icon {
-    margin-right: 10px;
 }
 
 .input-group input {
@@ -229,17 +219,21 @@ h2 {
     background: #008000;
 }
 
-.login-options {
-    display: flex;
-    justify-content: space-between;
-    color: white;
-    margin-top: 10px;
+.register-link {
+    margin-top: 15px;
     font-size: 14px;
+    color: white;
 }
 
-.login-options a {
-    color: #ADD8E6;
+.register-btn {
+    color: #FFD700;
     text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.register-btn:hover {
+    color: #FFC107;
 }
 
 
@@ -251,102 +245,92 @@ h2 {
 
 /* ✅ หน้าโปรไฟล์ */
 .profile-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: linear-gradient(135deg, #20B2AA, #2E8B57);
-}
-
-.profile-card {
-    background: rgba(255, 255, 255, 0.2);
-    padding: 30px;
-    border-radius: 15px;
-    text-align: center;
-    width: 400px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    color: white;
-}
-
-.profile-header img {
-    width: 80px;
-    border-radius: 50%;
+    max-width: 500px;
+    margin: 40px auto;
     background: white;
-    padding: 10px;
-    margin-bottom: 10px;
-}
-
-.profile-header h2 {
-    font-size: 22px;
-    margin: 5px 0;
-}
-
-.profile-header p {
-    font-size: 14px;
-    opacity: 0.8;
-}
-
-.profile-info {
-    text-align: left;
-    margin-top: 20px;
-}
-
-.profile-info h3 {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    font-size: 18px;
-    margin-bottom: 10px;
+}
+
+.profile-header {
+    padding: 15px 0;
+    border-bottom: 2px solid #f1f1f1;
+}
+
+.profile-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.profile-role {
+    font-size: 16px;
+    color: gray;
+    margin-top: 5px;
+}
+
+.profile-content {
+    padding: 20px;
 }
 
 .profile-info p {
     font-size: 16px;
-    margin: 5px 0;
+    color: #555;
+    margin: 10px 0;
 }
 
 .profile-actions {
     margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
 }
 
-.edit-btn, .logout-btn {
-    display: inline-block;
-    padding: 8px 15px;
-    border-radius: 5px;
+.profile-actions a {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    padding: 12px;
     text-decoration: none;
-    font-size: 14px;
-    color: white;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
     transition: 0.3s;
 }
 
-.edit-btn {
-    background: #FFD700;
-}
-
-.logout-btn {
-    background: #FF4500;
-}
-
-.edit-btn:hover {
-    background: #FFC107;
-}
-
-.logout-btn:hover {
-    background: #FF6347;
-}
 .dashboard-btn {
     background: #4CAF50;
     color: white;
-    padding: 10px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 16px;
-    transition: 0.3s;
 }
 
-.dashboard-btn:hover {
-    background: #388E3C;
+.edit-btn {
+    background: #3498db;
+    color: white;
 }
+
+.logout-btn {
+    background: #e74c3c;
+    color: white;
+}
+
+.profile-actions a:hover {
+    opacity: 0.8;
+}
+.profile-avatar {
+    width: 100px;
+    height: 100px;
+    margin: 20px auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid #ddd;
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
 
 
 /* ✅ หน้าแก้ไขโปรไฟล์ */
@@ -369,8 +353,19 @@ h2 {
     color: white;
 }
 
-.edit-profile-card h2 {
-    margin-bottom: 20px;
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    margin: 10px auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #ddd;
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .input-group {
@@ -422,6 +417,7 @@ h2 {
 .save-btn:hover {
     background: #FFC107;
 }
+
 
 /* ✅ Register Page */
 .register-container {

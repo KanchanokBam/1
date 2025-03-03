@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser
 
 # Custom User Model
 class User(AbstractUser):
+    profile_image = models.ImageField(upload_to='profile_images/', blank=True, null=True)
     ROLE_CHOICES = [
         ('guest', 'Guest'),
         ('member', 'Member'),

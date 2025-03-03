@@ -52,26 +52,27 @@ def profile(request):
 def edit_profile(request):
     if request.method == "POST":
         user = request.user
-        user.first_name = request.POST.get('first_name', user.first_name)
-        user.last_name = request.POST.get('last_name', user.last_name)
-        user.email = request.POST.get('email', user.email)
+        user.username = request.POST.get("username")
+        user.email = request.POST.get("email")
+
+        if 'profile_image' in request.FILES:
+            user.profile_image = request.FILES['profile_image']
 
         user.save()
-        messages.success(request, "บันทึกข้อมูลสำเร็จ")
-        return redirect('profile')
+        return redirect("profile")
 
-    return render(request, 'member/edit_profile.html')
+    return render(request, "member/edit_profile.html")
 
 
-def is_store(user):
-    return user.is_authenticated and user.role == 'store'
+def is_superuser(user):
+    return user.is_authenticated and user.is_superuser  # ✅ อนุญาตเฉพาะ Superuser เท่านั้น
 
-@user_passes_test(is_store, login_url='/')
+@user_passes_test(is_superuser, login_url='/')
 def store_dashboard(request):
-    products = Product.objects.filter(store=request.user)
+    products = Product.objects.all()  # ✅ Superuser สามารถเห็นสินค้าทั้งหมด
     return render(request, 'store/dashboard.html', {'products': products})
 
-@user_passes_test(is_store, login_url='/login/')
+@user_passes_test(is_superuser, login_url='/')
 def add_product(request):
     if request.method == 'POST':
         name = request.POST['name']
@@ -81,7 +82,6 @@ def add_product(request):
         image = request.FILES.get('image')
 
         Product.objects.create(
-            store=request.user,
             name=name,
             description=description,
             price=price,
@@ -91,9 +91,9 @@ def add_product(request):
         return redirect('store_dashboard')
     return render(request, 'store/add_product.html')
 
-@user_passes_test(is_store, login_url='/login/')
+@user_passes_test(is_superuser, login_url='/')
 def edit_product(request, product_id):
-    product = Product.objects.get(id=product_id, store=request.user)
+    product = Product.objects.get(id=product_id)
 
     if request.method == 'POST':
         product.name = request.POST['name']
@@ -107,10 +107,11 @@ def edit_product(request, product_id):
 
     return render(request, 'store/edit_product.html', {'product': product})
 
-@user_passes_test(is_store, login_url='/login/')
+@user_passes_test(is_superuser, login_url='/')
 def delete_product(request, product_id):
-    product = Product.objects.get(id=product_id, store=request.user)
+    product = Product.objects.get(id=product_id)
     product.delete()
     return redirect('store_dashboard')
+
 
 
