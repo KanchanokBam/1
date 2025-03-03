@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}โปรไฟล์ของฉัน{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <div class="profile-card">
+        <div class="profile-header">
+            <img src="{% static 'images/user_profile.png' %}" alt="Profile Picture">
+            <h2>{{ user.username }}</h2>
+            <p>{{ user.email }}</p>
+        </div>
+        <div class="profile-info">
+            <h3>ข้อมูลส่วนตัว</h3>
+            <p><strong>ชื่อ:</strong> {{ user.first_name }} {{ user.last_name }}</p>
+            <p><strong>อีเมล:</strong> {{ user.email }}</p>
+            <p><strong>ประเภทบัญชี:</strong> {{ user.get_role_display }}</p>
+        </div>
+        <div class="profile-actions">
+            {% if user.role == "store" %}
+                <a href="{% url 'store_dashboard' %}" class="dashboard-btn">แดชบอร์ดร้านค้า</a>  <!-- ✅ แสดงเฉพาะแอดมิน -->
+            {% endif %}
+            <a href="{% url 'edit_profile' %}" class="edit-btn">แก้ไขโปรไฟล์</a>
+            <a href="{% url 'logout' %}" class="logout-btn">ออกจากระบบ</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

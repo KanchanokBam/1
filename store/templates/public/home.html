@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}  <!-- ✅ ต้องโหลด static ที่นี่ -->
+
+{% block title %}หน้าแรก - ร้านขายของชำ{% endblock %}
+
+{% block content %}
+<!-- Featured Categories -->
+<section class="featured-categories">
+    <h2>Featured Categories</h2>
+    <div class="category-container">
+        <div class="category-card">
+            <img src="{% static 'images/vegetables.png' %}" alt="Vegetables">
+            <h3>Vegetables</h3>
+            <p>10 items</p>
+        </div>
+        <div class="category-card">
+            <img src="{% static 'images/fruits.png' %}" alt="Fruits">
+            <h3>Fruits</h3>
+            <p>8 items</p>
+        </div>
+        <div class="category-card">
+            <img src="{% static 'images/meat.png' %}" alt="Meat">
+            <h3>Meat</h3>
+            <p>12 items</p>
+        </div>
+        <div class="category-card">
+            <img src="{% static 'images/dairy.png' %}" alt="Dairy">
+            <h3>Dairy</h3>
+            <p>6 items</p>
+        </div>
+    </div>
+</section>
+
+<!-- Promotional Banners -->
+<section class="promo-section">
+    <div class="promo-box">
+        <h3>Everyday Fresh & Clean with Our Products</h3>
+        <button>Shop Now</button>
+    </div>
+    <div class="promo-box">
+        <h3>Make Your Breakfast Healthy & Easy</h3>
+        <button>Shop Now</button>
+    </div>
+    <div class="promo-box">
+        <h3>The Best Organic Products Online</h3>
+        <button>Shop Now</button>
+    </div>
+</section>
+
+<!-- Popular Products -->
+<section class="popular-products">
+    <h2>Popular Products</h2>
+    <div class="product-grid">
+        {% for product in products %}
+        <div class="product-card">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            <h3>{{ product.name }}</h3>
+            <p class="price">{{ product.price }} บาท</p>
+            <button class="buy-btn">Buy Now</button>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
